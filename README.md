@@ -1,0 +1,1 @@
+# cozyhome-javascript-sdk

@@ -1,0 +1,21 @@
+{
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "rollup": "^4.52.5",
+    "typescript": "^5.9.3"
+  },
+  "name": "@cozyhome/cozyhome-javascript-sdk",
+  "version": "1.0.0",
+  "main": "dist/sdk.js",
+  "module": "dist/sdk.esm.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
+  }
+}
