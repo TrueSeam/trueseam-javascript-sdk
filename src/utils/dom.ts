@@ -35,7 +35,7 @@ export function createBackdrop(): Mountable {
     width: "100%",
     height: "100%",
     background: "rgba(0, 0, 0, 0.5)",
-    backdropFilter: "blur(3px)",
+    backdropFilter: "blur(2px)",
     zIndex: "0",
   });
   return new BaseElement({ element: backdrop });
@@ -57,14 +57,26 @@ export function createFrame(): Mountable {
     element: mockIframe,
     animationDefinition: {
       keyFrames: [
-        { width: "0px", height: "0px" },
-        { width: "800px", height: "0px", offset: 0.5 },
+        {
+          width: "0px",
+          height: "0px",
+          borderTop: "3px solid black",
+          borderBottom: "3px solid black",
+        },
+        {
+          width: "800px",
+          height: "0px",
+          offset: 0.5,
+          borderTop: "3px solid black",
+          borderBottom: "3px solid black",
+        },
         {
           width: "800px",
           height: "600px",
           offset: 1,
           borderTop: "0px",
           borderBottom: "0px",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
         },
       ],
       options: {

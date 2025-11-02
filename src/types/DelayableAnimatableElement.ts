@@ -16,8 +16,15 @@ export class DelayableAnimatableElement extends Mountable {
     element: HTMLElement;
   }) {
     super(element);
-    const { keyFrames, options = { duration: 1000 } } = animationDefinition;
-    const keyFrameEffect = new KeyframeEffect(this.element, keyFrames, options);
+    const resolvedOptions: KeyframeEffectOptions = {
+      ...animationDefinition.options,
+      duration: animationDefinition.options?.duration ?? 1000,
+    };
+    const keyFrameEffect = new KeyframeEffect(
+      this.element,
+      animationDefinition.keyFrames,
+      resolvedOptions
+    );
     this.animation = new Animation(keyFrameEffect);
   }
 
