@@ -22,7 +22,7 @@ export class FrameElement extends Mountable<HTMLIFrameElement> {
       {
         type: "SETUP",
       },
-      "*"
+      EXTERNAL_URL
     );
   }
 
