@@ -1,6 +1,7 @@
 import { Mountable } from "../types/Mountable";
 import { DelayableAnimatableElement } from "../types/DelayableAnimatableElement";
 import { BaseElement } from "../types/BaseElement";
+import { FrameElement } from "../types/FrameElement";
 
 export function styleElement(
   el: HTMLElement,
@@ -91,7 +92,7 @@ export function createFrame(): Mountable {
   });
 }
 
-export function createFrameContent(): Mountable {
+export function createFrameContent(): FrameElement {
   const content = document.createElement("iframe");
   content.id = "cozyhome-content";
   content.src = "http://localhost:3000/embed";
@@ -110,7 +111,7 @@ export function createFrameContent(): Mountable {
     color: "white",
     border: "none",
   });
-  return new BaseElement({
+  return new FrameElement({
     element: content,
   });
 }

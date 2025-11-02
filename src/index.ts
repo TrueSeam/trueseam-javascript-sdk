@@ -1,4 +1,4 @@
-import { OverlayManager } from "./types/OverlayManager";
+import { OverlayManager } from "./types/overlay/OverlayManager";
 
 // src/index.ts
 export class CozyHome {

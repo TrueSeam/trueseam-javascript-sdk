@@ -1,15 +1,17 @@
-import { Mountable } from "./Mountable";
+import { Mountable } from "../Mountable";
 import {
   createBackdrop,
   createContainer,
   createFrame,
   createFrameContent,
-} from "../utils/dom";
+} from "../../utils/dom";
+import { FrameElement } from "../FrameElement";
 
 export class OverlayManager {
   private readonly containerElement: Mountable;
   private readonly backdropElement: Mountable;
   private readonly frameElement: Mountable;
+  private readonly frameContent: FrameElement;
 
   private previousBodyOverflow?: string;
 
@@ -17,8 +19,8 @@ export class OverlayManager {
     this.containerElement = createContainer();
     this.backdropElement = createBackdrop(this.closePopup.bind(this));
     this.frameElement = createFrame();
-    const frameContent = createFrameContent();
-    frameContent.attachTo(this.frameElement);
+    this.frameContent = createFrameContent();
+    this.frameContent.attachTo(this.frameElement);
   }
 
   public openPopup(): void {

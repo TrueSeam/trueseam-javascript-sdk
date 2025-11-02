@@ -4,10 +4,10 @@ type Listener = {
   options?: boolean | AddEventListenerOptions;
 };
 
-export abstract class Mountable {
+export abstract class Mountable<TElement extends HTMLElement = HTMLElement> {
   private readonly listeners: Array<Listener> = [];
 
-  constructor(protected readonly element: HTMLElement) {}
+  constructor(protected readonly element: TElement) {}
 
   protected abstract onAttached(): void;
 
@@ -28,7 +28,7 @@ export abstract class Mountable {
    * Attaches the element to a parent element
    * @param parent The parent element
    */
-  public attachTo(parent: Mountable | HTMLElement): void {
+  public attachTo(parent: Mountable | TElement): void {
     if (parent instanceof Mountable) {
       parent.element.appendChild(this.element);
     } else {

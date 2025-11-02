@@ -1,7 +1,9 @@
 import { Mountable } from "./Mountable";
 
-export class BaseElement extends Mountable {
-  constructor({ element }: { element: HTMLElement }) {
+export class BaseElement<
+  TElement extends HTMLElement
+> extends Mountable<TElement> {
+  constructor({ element }: { element: TElement }) {
     super(element);
   }
 
