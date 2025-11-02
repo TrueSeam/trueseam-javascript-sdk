@@ -33,7 +33,6 @@ export class DelayableAnimatableElement extends Mountable {
   }
 
   public animate(): void {
-    console.log("animating");
     this.animation.play();
   }
 }

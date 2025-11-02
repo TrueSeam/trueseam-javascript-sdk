@@ -11,11 +11,9 @@ export class CozyHome {
 
   public init = (options: { clientToken: string }): void => {
     this.clientToken = options.clientToken;
-    console.log("SDK initialized with token:", this.clientToken);
   };
 
   public open = (): void => {
-    console.log("opening");
     this.overlayManager.openPopup();
   };
 
