@@ -13,4 +13,8 @@ export declare abstract class Mountable {
      * Detaches the current element from the tree
      */
     detach(): void;
+    /**
+     * Detaches the current element and performs cleanup
+     */
+    destroy(): void;
 }

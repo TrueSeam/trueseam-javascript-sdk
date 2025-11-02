@@ -6,11 +6,12 @@
   </head>
   <body>
     <h1>SDK Test Page</h1>
+    <button onclick="CozyHome.open()">Open</button>
     <div style="height: 1000px; background: red; width: 400px"></div>
     <script src="./dist/sdk.js"></script>
     <script>
-      window.CozyHome.init({ clientToken: "a" });
-      window.CozyHome.open();
+      CozyHome.init({ clientToken: "a" });
+      CozyHome.open();
     </script>
   </body>
 </html>

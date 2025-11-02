@@ -23,7 +23,7 @@ export function createContainer(): Mountable {
   return new BaseElement({ element: container });
 }
 
-export function createBackdrop(): Mountable {
+export function createBackdrop(onClick: () => void): Mountable {
   const backdrop = document.createElement("div");
   backdrop.id = "cozyhome-backdrop";
   styleElement(backdrop, {
@@ -38,13 +38,15 @@ export function createBackdrop(): Mountable {
     backdropFilter: "blur(2px)",
     zIndex: "0",
   });
-  return new BaseElement({ element: backdrop });
+  const element = new BaseElement({ element: backdrop });
+  element.addEventListener("click", onClick);
+  return element;
 }
 
 export function createFrame(): Mountable {
-  const mockIframe = document.createElement("div");
-  mockIframe.id = "cozyhome-frame";
-  styleElement(mockIframe, {
+  const frame = document.createElement("div");
+  frame.id = "cozyhome-frame";
+  styleElement(frame, {
     width: "800px",
     height: "0px",
     background: "black",
@@ -52,9 +54,11 @@ export function createFrame(): Mountable {
     borderRadius: "12px",
     borderTop: "3px solid black",
     borderBottom: "3px solid black",
+    overflow: "hidden",
+    position: "relative",
   });
   return new DelayableAnimatableElement({
-    element: mockIframe,
+    element: frame,
     animationDefinition: {
       keyFrames: [
         {
@@ -84,5 +88,29 @@ export function createFrame(): Mountable {
         easing: "ease-in-out",
       },
     },
+  });
+}
+
+export function createFrameContent(): Mountable {
+  const content = document.createElement("iframe");
+  content.id = "cozyhome-content";
+  content.src = "http://localhost:3000/embed";
+  styleElement(content, {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "100%",
+    boxSizing: "border-box",
+    color: "white",
+    border: "none",
+  });
+  return new BaseElement({
+    element: content,
   });
 }

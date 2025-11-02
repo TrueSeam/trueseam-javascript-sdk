@@ -42,6 +42,13 @@ export abstract class Mountable {
    */
   public detach(): void {
     this.element.remove();
+  }
+
+  /**
+   * Detaches the current element and performs cleanup
+   */
+  public destroy(): void {
+    this.detach();
     while (this.listeners.length > 0) {
       const { type, listener, options } = this.listeners.pop()!;
       this.element.removeEventListener(type, listener, options);
