@@ -4,4 +4,4 @@ export declare function styleElement(el: HTMLElement, style: Partial<CSSStyleDec
 export declare function createContainer(): Mountable;
 export declare function createBackdrop(onClick: () => void): Mountable;
 export declare function createFrame(): Mountable;
-export declare function createFrameContent(): FrameElement;
+export declare function createFrameContent(closePopup: () => void): FrameElement;

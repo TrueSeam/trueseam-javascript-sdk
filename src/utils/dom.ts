@@ -92,7 +92,7 @@ export function createFrame(): Mountable {
   });
 }
 
-export function createFrameContent(): FrameElement {
+export function createFrameContent(closePopup: () => void): FrameElement {
   const content = document.createElement("iframe");
   content.id = "cozyhome-content";
   content.src = "http://localhost:3000/embed";
@@ -113,5 +113,6 @@ export function createFrameContent(): FrameElement {
   });
   return new FrameElement({
     element: content,
+    onClose: closePopup,
   });
 }

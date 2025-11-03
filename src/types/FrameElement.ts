@@ -4,9 +4,17 @@ const EXTERNAL_URL = "http://localhost:3000";
 
 export class FrameElement extends Mountable<HTMLIFrameElement> {
   private readonly handleMessage: (event: MessageEvent) => void;
+  private readonly handleClosePopup: () => void;
 
-  constructor({ element }: { element: HTMLIFrameElement }) {
+  constructor({
+    element,
+    onClose,
+  }: {
+    element: HTMLIFrameElement;
+    onClose: () => void;
+  }) {
     super(element);
+    this.handleClosePopup = onClose;
     this.handleMessage = this.onMessage.bind(this);
     window.addEventListener("message", this.handleMessage);
   }
@@ -14,7 +22,9 @@ export class FrameElement extends Mountable<HTMLIFrameElement> {
   private onMessage(event: MessageEvent): void {
     if (event.origin !== EXTERNAL_URL) return;
 
-    console.log("parent got event", event.data);
+    if (event.data.type === "CLOSE") {
+      this.handleClosePopup();
+    }
   }
 
   private onLoaded(): void {

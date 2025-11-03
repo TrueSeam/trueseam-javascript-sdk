@@ -19,7 +19,7 @@ export class OverlayManager {
     this.containerElement = createContainer();
     this.backdropElement = createBackdrop(this.closePopup.bind(this));
     this.frameElement = createFrame();
-    this.frameContent = createFrameContent();
+    this.frameContent = createFrameContent(this.closePopup.bind(this));
     this.frameContent.attachTo(this.frameElement);
   }
 
