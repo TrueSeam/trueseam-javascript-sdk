@@ -1,40 +1,34 @@
-import { Mountable } from "../Mountable";
-import {
-  createBackdrop,
-  createContainer,
-  createFrame,
-  createFrameContent,
-} from "../../utils/dom";
-import { FrameElement } from "../FrameElement";
+import { Mountable } from "../elements/Mountable";
+import { createBackdrop, createContainer, createFrame } from "../../utils/dom";
+import { FrameContainerElement } from "../elements/custom/FrameContainerElement";
 
 export class OverlayManager {
   private readonly containerElement: Mountable;
   private readonly backdropElement: Mountable;
-  private readonly frameElement: Mountable;
-  private readonly frameContent: FrameElement;
+  private readonly frameContainerElement: FrameContainerElement;
 
   private previousBodyOverflow?: string;
 
   constructor() {
     this.containerElement = createContainer();
     this.backdropElement = createBackdrop(this.closePopup.bind(this));
-    this.frameElement = createFrame();
-    this.frameContent = createFrameContent(this.closePopup.bind(this));
-    this.frameContent.attachTo(this.frameElement);
+    this.frameContainerElement = createFrame(this.closePopup.bind(this));
   }
 
   public openPopup(): void {
     this.containerElement.attachTo(document.body);
     this.backdropElement.attachTo(this.containerElement);
-    this.frameElement.attachTo(this.containerElement);
+    this.frameContainerElement.attachTo(this.containerElement);
 
     const body = document.body;
     this.previousBodyOverflow = body.style.overflow;
     body.style.overflow = "hidden";
+
+    this.frameContainerElement.setIsOpened(true);
   }
 
   public closePopup(): void {
-    this.frameElement.detach();
+    this.frameContainerElement.detach();
     this.backdropElement.detach();
     this.containerElement.detach();
 
@@ -44,10 +38,12 @@ export class OverlayManager {
     } else {
       document.body.style.overflow = "";
     }
+
+    this.frameContainerElement.setIsOpened(false);
   }
 
   public destroy(): void {
-    this.frameElement.destroy();
+    this.frameContainerElement.destroy();
     this.backdropElement.destroy();
     this.containerElement.destroy();
   }

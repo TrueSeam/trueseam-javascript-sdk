@@ -1,20 +1,28 @@
-import { Mountable } from "./Mountable";
+import { Mountable } from "../Mountable";
 
 const EXTERNAL_URL = "http://localhost:3000";
 
-export class FrameElement extends Mountable<HTMLIFrameElement> {
+export class FrameContentElement extends Mountable<HTMLIFrameElement> {
   private readonly handleMessage: (event: MessageEvent) => void;
-  private readonly handleClosePopup: () => void;
+  private readonly handleExpandPopup: VoidFunction;
+  private readonly handleClosePopup: VoidFunction;
+  private readonly handleContractPopup: VoidFunction;
 
   constructor({
     element,
-    onClose,
+    methods,
   }: {
     element: HTMLIFrameElement;
-    onClose: () => void;
+    methods: {
+      onClose: VoidFunction;
+      expandPopup: VoidFunction;
+      contractPopup: VoidFunction;
+    };
   }) {
     super(element);
-    this.handleClosePopup = onClose;
+    this.handleClosePopup = methods.onClose;
+    this.handleContractPopup = methods.contractPopup;
+    this.handleExpandPopup = methods.expandPopup;
     this.handleMessage = this.onMessage.bind(this);
     window.addEventListener("message", this.handleMessage);
   }
@@ -24,6 +32,12 @@ export class FrameElement extends Mountable<HTMLIFrameElement> {
 
     if (event.data.type === "CLOSE") {
       this.handleClosePopup();
+    } else if (event.data.type === "EXPAND") {
+      this.handleExpandPopup();
+    } else if (event.data.type === "CONTRACT") {
+      this.handleContractPopup();
+    } else {
+      console.warn("Recv an unexpected message type:", event.data.type);
     }
   }
 

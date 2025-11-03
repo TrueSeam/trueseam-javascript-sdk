@@ -1,9 +1,5 @@
+import { AnimationDefintion } from "./index";
 import { Mountable } from "./Mountable";
-
-type AnimationDefintion = {
-  keyFrames: Array<Keyframe>;
-  options?: KeyframeEffectOptions;
-};
 
 export class DelayableAnimatableElement extends Mountable {
   private readonly animation: Animation;
@@ -28,11 +24,15 @@ export class DelayableAnimatableElement extends Mountable {
     this.animation = new Animation(keyFrameEffect);
   }
 
-  public onAttached(): void {
+  protected onAttached(): void {
     this.animate();
   }
 
   public animate(): void {
     this.animation.play();
+  }
+
+  public finish(): void {
+    this.animation.cancel();
   }
 }

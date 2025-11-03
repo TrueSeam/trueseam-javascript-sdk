@@ -54,4 +54,12 @@ export abstract class Mountable<TElement extends HTMLElement = HTMLElement> {
       this.element.removeEventListener(type, listener, options);
     }
   }
+
+  /**
+   * Applies styles to the element
+   * @param style A style object
+   */
+  public style(style: Partial<CSSStyleDeclaration>): void {
+    Object.assign(this.element.style, style);
+  }
 }

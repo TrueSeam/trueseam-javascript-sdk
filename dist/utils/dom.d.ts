@@ -1,7 +1,5 @@
-import { Mountable } from "../types/Mountable";
-import { FrameElement } from "../types/FrameElement";
-export declare function styleElement(el: HTMLElement, style: Partial<CSSStyleDeclaration>): void;
+import { Mountable } from "../types/elements/Mountable";
+import { FrameContainerElement } from "../types/elements/custom/FrameContainerElement";
 export declare function createContainer(): Mountable;
 export declare function createBackdrop(onClick: () => void): Mountable;
-export declare function createFrame(): Mountable;
-export declare function createFrameContent(closePopup: () => void): FrameElement;
+export declare function createFrame(onClose: VoidFunction): FrameContainerElement;
