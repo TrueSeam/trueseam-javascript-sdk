@@ -24,4 +24,3 @@ export declare class MessageManager {
     private onMessage;
     private static buildListeners;
 }
-export declare const getMessageManagerInstance: () => MessageManager;

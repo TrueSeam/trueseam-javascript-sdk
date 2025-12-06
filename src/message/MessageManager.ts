@@ -131,6 +131,3 @@ export class MessageManager {
     };
   }
 }
-
-export const getMessageManagerInstance: () => MessageManager =
-  MessageManager.getInstance.bind(MessageManager);

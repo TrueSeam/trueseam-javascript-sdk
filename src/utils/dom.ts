@@ -1,7 +1,7 @@
 import { Mountable } from "../types/elements/Mountable";
 import { BaseElement } from "../types/elements/BaseElement";
-import { FrameContainerElement } from "../types/elements/custom/FrameContainerElement";
 import { AnimateTvOpenIn } from "./animations";
+import { FrameContainerElement } from "../types/elements/FrameContainerElement";
 
 export function createContainer(): Mountable {
   const container = document.createElement("div");
