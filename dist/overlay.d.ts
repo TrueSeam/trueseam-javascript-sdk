@@ -1,8 +1,0 @@
-export declare class OverlayManager {
-    private readonly containerElement;
-    private readonly backdropElement;
-    private readonly frameElement;
-    constructor();
-    openPopup(): void;
-    closePopup(): void;
-}
