@@ -1,6 +1,6 @@
+import { FrameContainerElement } from "../types/elements/FrameContainerElement";
 import { Mountable } from "../types/elements/Mountable";
 import { createBackdrop, createContainer, createFrame } from "../utils/dom";
-import { FrameContainerElement } from "../types/elements/custom/FrameContainerElement";
 
 export class OverlayManager {
   private readonly containerElement: Mountable;

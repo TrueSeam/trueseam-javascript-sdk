@@ -1,8 +1,5 @@
-import {
-  getMessageManagerInstance,
-  MessageManager,
-} from "../../../message/MessageManager";
-import { Mountable } from "../Mountable";
+import { MessageManager } from "../../message/MessageManager";
+import { Mountable } from "./Mountable";
 
 export class FrameContentElement extends Mountable<HTMLIFrameElement> {
   private readonly messageManager: MessageManager;
@@ -19,7 +16,7 @@ export class FrameContentElement extends Mountable<HTMLIFrameElement> {
     };
   }) {
     super(element);
-    this.messageManager = getMessageManagerInstance();
+    this.messageManager = MessageManager.getInstance();
     this.messageManager.addListener("CLOSE", methods.onClose);
     this.messageManager.addListener("CONTRACT", methods.contractPopup);
     this.messageManager.addListener("EXPAND", methods.expandPopup);
